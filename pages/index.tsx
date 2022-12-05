@@ -5,6 +5,7 @@ import LargeBadge from '../components/Badges/Large'
 import FilledButton from '../components/Buttons/Filled'
 import OutlinedButton from '../components/Buttons/Outlined'
 import FirstCard from '../components/Cards/first'
+import Footer from '../components/Footer'
 import Navigation from '../components/Navigation'
 import styles from '../styles/Home.module.css'
 
@@ -34,13 +35,13 @@ export default function Home() {
           title="New title"
           link="http://localhost:3000"
           date="03/12/2022"
-          image={'/../public/mypic.jpg'}
+          // image={'/../public/mypic.jpg'}
           icon={'/../public/mypic.jpg'}
           description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta harum, earum alias sapiente minudunt inventore harum impedit provident consequatur quis!"
         />
       </main>
-
-      <footer className={styles.footer}>
+      <Footer />
+      {/* <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
@@ -51,7 +52,7 @@ export default function Home() {
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
-      </footer>
+      </footer> */}
     </div>
   )
 }
