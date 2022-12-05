@@ -3,11 +3,12 @@ import Link from "next/link";
 import { useState } from "react";
 import FilledButton from "../Buttons/Filled";
 import OutlinedButton from "../Buttons/Outlined";
-import CommandIcon from "../icons/CommandIcon";
-import EditIcon from "../icons/Edit";
-import GitHubLogo from "../icons/Github";
-import Options from "../icons/Options";
-import TwNFTLogo from "../icons/TwNFT";
+import CommandIcon from "../Icons/CommandIcon";
+import EditIcon from "../Icons/Edit";
+import GitHubLogo from "../Icons/Github";
+import Options from "../Icons/Options";
+import TwNFTLogo from "../Icons/TwNFT";
+import ThemeSwitch from "../ThemeSwitch";
 
 interface FirstCard {
   title: string;
@@ -67,7 +68,8 @@ export default function FirstCard({
           </div>
           <div className="flex justify-center items-center w-10 h-10 bg-gray-300/20 rounded-full">
             {/* <Options /> */}
-            <EditIcon></EditIcon>
+            {/* <EditIcon></EditIcon> */}
+            <ThemeSwitch />
           </div>
         </div>
         <div className="cover">
