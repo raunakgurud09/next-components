@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { GitHubLogo, HashnodeLogo, TwitterLogo, MailLogo, LinkedinLogo, FigmaLogo } from '../components/Icons'
+import { GitHubLogo, HashnodeLogo, TwitterLogo, LinkedinLogo } from '@/components/Icons'
 
 interface Social {
   id: string
@@ -31,7 +31,7 @@ const socials: Social[] = [
     id: 'linkedin',
     name: 'Linkedin',
     url: 'https://www.linkedin.com/in/raunak-gurud-3b8261205/',
-    icon: <LinkedinLogo color='#fff' />,
+    icon: <LinkedinLogo color="#fff" />,
   },
 ]
 
