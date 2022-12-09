@@ -3,11 +3,6 @@ import Link from "next/link";
 import { useState } from "react";
 import FilledButton from "../Buttons/Filled";
 import OutlinedButton from "../Buttons/Outlined";
-import CommandIcon from "../Icons/CommandIcon";
-import EditIcon from "../Icons/Edit";
-import GitHubLogo from "../Icons/Github";
-import Options from "../Icons/Options";
-import TwNFTLogo from "../Icons/TwNFT";
 import ThemeSwitch from "../ThemeSwitch";
 
 interface FirstCard {
@@ -49,7 +44,7 @@ export function Avatar({ letter = "A", image }: any) {
 
 export default function FirstCard({
   title,
-  image = "/../public/card.png",
+  image,
   description,
   link,
   icon,
