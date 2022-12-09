@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint {components,pages,utils,data,layouts}/**/*.{js,jsx,ts,tsx}",
+    "lint:fix": "eslint --fix {components,pages,utils,data,layouts}/**/*.{js,jsx,ts,tsx}",
     "prepare": "husky install"
   },
   "dependencies": {
