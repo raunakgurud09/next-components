@@ -1,17 +1,17 @@
-import NextImage from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import FilledButton from "../Buttons/Filled";
-import OutlinedButton from "../Buttons/Outlined";
-import ThemeSwitch from "../ThemeSwitch";
+import NextImage from 'next/image'
+import Link from 'next/link'
+import { useState } from 'react'
+import FilledButton from '../Buttons/Filled'
+import OutlinedButton from '../Buttons/Outlined'
+import ThemeSwitch from '../ThemeSwitch'
 
 interface FirstCard {
-  title: string;
-  link: string;
-  date: any;
-  description?: string;
-  image?: any;
-  icon?: any;
+  title: string
+  link: string
+  date: any
+  description?: string
+  image?: any
+  icon?: any
 }
 export function AvatarImage({ image }: any) {
   return (
@@ -24,12 +24,15 @@ export function AvatarImage({ image }: any) {
         width={40}
       />
     </>
-  );
+  )
 }
 
-export function Avatar({ letter = "A", image }: any) {
-  const [isImage, setIsImage] = useState(true);
-  //   if (image) return (isImage) => (setIsImage = !isImage);
+export function Avatar({ letter = 'A', image }: any) {
+  let [isImage, setIsImage] = useState<boolean>(true)
+  if (image) {
+    return () => (image ? setIsImage(false) : setIsImage(false))
+    console.log(isImage)
+  }
 
   return (
     <div className="flex w-10 h-10 items-center text-center justify-center rounded-full  bg-gray-300/20">
@@ -39,7 +42,7 @@ export function Avatar({ letter = "A", image }: any) {
         <div className="font-mono font-medium ">{letter}</div>
       )}
     </div>
-  );
+  )
 }
 
 export default function FirstCard({
@@ -83,12 +86,12 @@ export default function FirstCard({
             <Link href={link}>
               <FilledButton text="Enable" className="mr-4" />
             </Link>
-            <a href="http://localhost:3000" target={"_blank"}>
+            <a href="http://localhost:3000" target={'_blank'}>
               <OutlinedButton text="Disable" />
             </a>
           </div>
         </div>
       </div>
     </>
-  );
+  )
 }

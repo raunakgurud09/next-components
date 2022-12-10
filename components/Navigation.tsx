@@ -49,7 +49,7 @@ const Navigation = () => {
 
       <div className="flex items-center space-x-6 text-300 md:space-x">
         <ThemeSwitch />
-        <Avatar image={icon}/>
+        <Avatar />
         <SmallNav />
       </div>
     </nav>
