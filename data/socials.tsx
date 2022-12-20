@@ -31,7 +31,7 @@ const socials: Social[] = [
     id: 'linkedin',
     name: 'Linkedin',
     url: 'https://www.linkedin.com/in/raunak-gurud-3b8261205/',
-    icon: <LinkedinLogo color="#fff" />,
+    icon: <LinkedinLogo />,
   },
 ]
 
