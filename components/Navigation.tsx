@@ -3,6 +3,10 @@ import { Avatar } from './Cards/first'
 import Signature from './Signature'
 import SmallNav from './SmallNav'
 import ThemeSwitch from './ThemeSwitch'
+import { useSession, signIn, signOut, getSession } from 'next-auth/react'
+import LogIn from './login-btn'
+import { useUser } from 'hooks/user/useUser'
+import { useEffect } from 'react'
 
 export interface navList {
   name: string
@@ -17,18 +21,29 @@ export const navLists = [
     href: '/blog',
   },
   {
+    name: 'Login',
+    href: '/login',
+  },
+  {
     name: 'Projects',
     href: '/projects',
   },
   {
-    name: 'Contact',
-    href: '/contacts',
+    name: 'dashboard',
+    href: '/dashboard',
   },
 ]
 
 const icon = '/../public/mypic.jpg'
 
 const Navigation = () => {
+  const { data: session } = useSession()
+  const { data: currentUser } = useUser()
+  useEffect(() => {
+
+    return () => {}
+  }, [currentUser])
+
   return (
     <nav className="flex px-6 py-4 item-center select-none backdrop-blur font-mono sticky top-0 z-50">
       <Signature />
@@ -49,13 +64,27 @@ const Navigation = () => {
 
       <div className="flex items-center space-x-6 text-300 md:space-x">
         <ThemeSwitch />
-        <Avatar />
+        {currentUser ? <Avatar image={currentUser.image} /> : <Avatar />}
         <SmallNav />
+        <LogIn />
       </div>
     </nav>
   )
 }
 
-{
-}
 export default Navigation
+
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req })
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    }
+  }
+  return {
+    props: { session },
+  }
+}

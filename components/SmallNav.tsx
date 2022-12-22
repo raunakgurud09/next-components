@@ -7,7 +7,7 @@ import { navLists } from './Navigation'
 
 function SmallNav() {
   return (
-    <Menu as="div" className="relative h-5 md:hidden">
+    <Menu as="div" className="relative h-5 md:hidden ">
       <Menu.Button className="inline-flex">
         <span
           className="w-6 cursor-pointer fill-current hover:text-primary-500"
@@ -26,7 +26,7 @@ function SmallNav() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-20 mt-4 text-sm font-bold border rounded-lg shadow-lg w-36 border-background-900 top-6 bg-50">
+        <Menu.Items className="absolute bg-slate-500 right-0 z-20 mt-4 text-sm font-bold border rounded-lg shadow-lg w-36 border-background-900 top-6 bg-50">
           {navLists.map(({ name, href }) => (
             <Menu.Item key={name}>
               <Link href={href} legacyBehavior>

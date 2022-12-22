@@ -1,6 +1,7 @@
+import { getSession } from 'next-auth/react'
 import NextImage from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FilledButton from '../Buttons/Filled'
 import OutlinedButton from '../Buttons/Outlined'
 import ThemeSwitch from '../ThemeSwitch'
@@ -28,11 +29,11 @@ export function AvatarImage({ image }: any) {
 }
 
 export function Avatar({ letter = 'A', image }: any) {
+  // console.log(image)
   let [isImage, setIsImage] = useState<boolean>(true)
-  if (image) {
-    return () => (image ? setIsImage(false) : setIsImage(false))
-    console.log(isImage)
-  }
+  useEffect(() => {
+    image === '' ? setIsImage(false) : setIsImage(true)
+  }, [])
 
   return (
     <div className="flex w-10 h-10 items-center text-center justify-center rounded-full  bg-gray-300/20">
@@ -58,7 +59,7 @@ export default function FirstCard({
       <div className="m-4 flex flex-col w-96 h-[480px] border border-[#49454F]  rounded-xl ">
         <div className="flex flex-row px-3 py-4">
           <div className="flex flex-row flex-grow  ">
-            <Avatar image={icon} />
+            <Avatar image={image} />
             <div className="ml-4">
               <div className="font-medium">{title}</div>
               <div className="font-thin text-xs opacity-50">{date}</div>
