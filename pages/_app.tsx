@@ -3,13 +3,16 @@ import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
 import Footer from '@/components/Footer'
 import Navigation from '@/components/Navigation'
+import { SessionProvider } from 'next-auth/react'
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
-    <ThemeProvider>
-      <Navigation />
-      <Component {...pageProps} />
-      <Footer />
-    </ThemeProvider>
+    <SessionProvider session={session}>
+      <ThemeProvider>
+        <Navigation />
+        <Component {...pageProps} />
+        <Footer />
+      </ThemeProvider>
+    </SessionProvider>
   )
 }

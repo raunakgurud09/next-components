@@ -2,22 +2,49 @@ import { Head } from 'next/document'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-import { AuthContext } from '../src/context/auth-context'
+import { getSession, useSession } from 'next-auth/react'
 
 export default function Dashboard() {
-  const router = useRouter()
-  const authContext = React.useContext(AuthContext)
-
-  React.useEffect(() => {
-    // checks if the user is authenticated
-    authContext.isUserAuthenticated() ? router.push('/dashboard') : router.push('/')
-  }, [])
+  const { data: session } = useSession()
 
   return (
-    <React.Fragment>
+    <>
       <div>
         <h2>Dashboard</h2>
+        {session ? User({ session }) : Guest()}
       </div>
-    </React.Fragment>
+    </>
   )
+}
+
+function User({ session }) {
+  return (
+    <>
+      {/* <div>{session.user.name}</div> */}
+      {/* <div>{JSON.stringify(session.user)}</div> */}
+      {/* <div>{session.user.email}</div> */}
+    </>
+  )
+}
+function Guest() {
+  return (
+    <>
+      <div>Guest</div>
+    </>
+  )
+}
+
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req })
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    }
+  }
+  return {
+    props: { session },
+  }
 }
