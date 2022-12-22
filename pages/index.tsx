@@ -23,19 +23,12 @@ export default function Home() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <p className="px-1 py-2 m-2 bg-green-700">
-          Some value of x{/* <SmallBadge /> */}
-          {/* <MediumBadge num={2} /> */}
-        </p>
-        <LargeBadge num={9898}>
-          <FilledButton text="Enable" />
-        </LargeBadge>
-        <OutlinedButton text="Enter" />
+        
         <FirstCard
           title="New title"
           link="http://localhost:3000"
           date="03/12/2022"
-          // image={'/../public/mypic.jpg'}
+          image={'/../public/mypic.jpg'}
           icon={'/../public/mypic.jpg'}
           description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta harum, earum alias sapiente minudunt inventore harum impedit provident consequatur quis!"
         />
