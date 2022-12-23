@@ -7,7 +7,6 @@ export const useUser = () => {
   const value = token ? '/api/profile' : null
 
   const { data, error } = useSWR(value, AuthService.getMe)
-  console.log(data, error)
   const isLoading = !data && !error
   const user = data?.user
 
