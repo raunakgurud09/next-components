@@ -2,6 +2,7 @@ import { getSession } from 'next-auth/react'
 import NextImage from 'next/image'
 import Link from 'next/link'
 import { Avatar } from '../Avatar'
+import SmallBadge from '../Badges/Small'
 import FilledButton from '../Buttons/Filled'
 import OutlinedButton from '../Buttons/Outlined'
 import Modal from '../Modal'
@@ -36,10 +37,8 @@ export default function FirstCard({
               <div className="font-thin text-xs opacity-50">{date}</div>
             </div>
           </div>
-          <div className="flex justify-center items-center w-10 h-10 bg-gray-300/20 rounded-full">
-            {/* <Options /> */}
-            {/* <EditIcon></EditIcon> */}
-            <ThemeSwitch />
+          <div className="flex justify-center items-start w-10 h-10 bg-gray-300/20 rounded-full">
+            <SmallBadge children={<ThemeSwitch />} number={2} />
           </div>
         </div>
         <div className="cover">
@@ -54,9 +53,9 @@ export default function FirstCard({
         <div className="flex flex-grow flex-col justify-between p-4">
           <h3 className="font-medium text-2xl">{title}</h3>
           <p>{description}</p>
-          <div>
-            <Link href={link}>
-              <FilledButton text="Enable" className="mr-4" />
+          <div className='flex flex-row'>
+            <Link href={link} className='max-w-max'>
+              <FilledButton text="Enable" className="m-4" />
             </Link>
             <Modal>
               <OutlinedButton text="Disable" />
