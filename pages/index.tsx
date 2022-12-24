@@ -1,12 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
-
-import LargeBadge from '../components/Badges/Large'
-import FilledButton from '../components/Buttons/Filled'
-import OutlinedButton from '../components/Buttons/Outlined'
 import FirstCard from '../components/Cards/first'
-import Footer from '../components/Footer'
-import Navigation from '../components/Navigation'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -20,7 +13,7 @@ export default function Home() {
       
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to <a href="https://nextjs.org">&crarr; Next.js! &#8599; </a>
         </h1>
 
         
