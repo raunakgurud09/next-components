@@ -7,13 +7,14 @@ import LogIn from './login-btn'
 import { useUser } from 'hooks/user/useUser'
 import { useEffect } from 'react'
 import { Avatar } from './Avatar'
+import { GetServerSideProps } from 'next'
+import { fetcherSSR } from '@/lib/fetchSSR'
+import DropDown from './DropDown'
 
 export interface navList {
   name: string
   href: string
 }
-
-
 
 export interface navList extends Array<navList> {}
 
@@ -68,9 +69,10 @@ const Navigation = () => {
         {!currentUser ? (
           <LogIn />
         ) : (
-          <Avatar letter={currentUser.name.charAt(0).toUpperCase()} image={currentUser.image} />
+          <DropDown>
+            <Avatar letter={currentUser.name.charAt(0).toUpperCase()} image={currentUser.image} />
+          </DropDown>
         )}
-
         <SmallNav />
       </div>
     </nav>
@@ -82,17 +84,30 @@ const Navigation = () => {
 
 export default Navigation
 
-export async function getServerSideProps({ req }) {
-  const session = await getSession({ req })
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
-    }
-  }
-  return {
-    props: { session },
-  }
+// export async function getServerSideProps({ req }) {
+//   const session = await getSession({ req })
+//   if (!session) {
+//     return {
+//       redirect: {
+//         destination: '/login',
+//         permanent: false,
+//       },
+//     }
+//   }
+//   return {
+//     props: { session },
+//   }
+// }
+
+const getServerSideProps: GetServerSideProps<T> = async (context) => {
+  const fetcher = (url: string) => fetcherSSR(context.req, context.res, url)
+
+  const url = 'http://localhost:5000/api/v1/user/profile'
+  const [error, user] = await fetcher(url)
+  if (error || !user) return { redirect: { statusCode: 307, destination: '/' } }
+
+  // const result = getProps ? await getProps({ context, fetcher, user }) : {}
+  // const props = (result as any).props || {}
+
+  return { props: { user } }
 }
