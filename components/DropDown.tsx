@@ -1,10 +1,18 @@
 import cx from 'classnames'
+import { useLogout } from 'hooks/useAuth'
 import { useUser } from 'hooks/user/useUser'
-import { useEffect, useRef, useState } from 'react'
+import { ReactComponentElement, useEffect, useRef, useState } from 'react'
+import { GitHubLogo, LinkedinLogo } from './Icons'
 
 export default function DropDown({ children }) {
   const [isOpenDropDown, setIsOpenDropDown] = useState<boolean>(false)
   const { data: currentUser } = useUser()
+  const logout = useLogout()
+
+  const handleLogout = () => {
+    logout()
+    window.location.href = '/login'
+  }
 
   const dropDownRef = useRef<HTMLLIElement>(null)
 
@@ -25,6 +33,10 @@ export default function DropDown({ children }) {
     setIsOpenDropDown(!isOpenDropDown)
   }
 
+  const handleDashboard = () => {
+    window.location.href = '/dashboard'
+  }
+
   return (
     <li ref={dropDownRef} className="relative">
       <div onClick={handleCloseDropDown} className="">
@@ -39,20 +51,22 @@ export default function DropDown({ children }) {
       >
         <div className="flex flex-col">
           <h3 className="text-m">Hey! {currentUser.name}</h3>
-          <DropDownList />
-          <DropDownList />
-          <DropDownList />
+          <DropDownList action={handleLogout} text="singOut" />
+          <DropDownList action={handleDashboard} text="Dashboard" />
+          {/* <DropDownList /> */}
         </div>
       </div>
     </li>
   )
 }
 
-const DropDownList = () => {
+const DropDownList = ({ text, icon = '', action }: any) => {
   return (
     <div className="p-1 my-1 rounded bg-slate-50/20 hover:bg-slate-100/5 flex flex-row">
-      <div className="w-1/4">{/* <GitHubLogo /> */}</div>
-      <div className="w-3/4">Name</div>
+      <div className="w-1/4">{icon}</div>
+      <div className="w-3/4" onClick={action}>
+        {text}
+      </div>
     </div>
   )
 }
