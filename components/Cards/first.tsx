@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Avatar } from '../Avatar'
 import FilledButton from '../Buttons/Filled'
 import OutlinedButton from '../Buttons/Outlined'
+import Modal from '../Modal'
 import ThemeSwitch from '../ThemeSwitch'
 
 interface FirstCard {
@@ -27,7 +28,9 @@ export default function FirstCard({
       <div className="m-4 flex flex-col w-96 h-[480px] border border-[#49454F]  rounded-xl ">
         <div className="flex flex-row px-3 py-4">
           <div className="flex flex-row flex-grow  ">
-            <Avatar image={image} />
+            <Modal>
+              <Avatar image={image} />
+            </Modal>
             <div className="ml-4">
               <div className="font-medium">{title}</div>
               <div className="font-thin text-xs opacity-50">{date}</div>
@@ -55,9 +58,10 @@ export default function FirstCard({
             <Link href={link}>
               <FilledButton text="Enable" className="mr-4" />
             </Link>
-            <a href="http://localhost:3000" target={'_blank'}>
+            <Modal>
               <OutlinedButton text="Disable" />
-            </a>
+            </Modal>
+            {/* <a href="http://localhost:3000" target={'_blank'}></a> */}
           </div>
         </div>
       </div>
