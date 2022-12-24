@@ -1,7 +1,7 @@
 import { getSession } from 'next-auth/react'
 import NextImage from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { Avatar } from '../Avatar'
 import FilledButton from '../Buttons/Filled'
 import OutlinedButton from '../Buttons/Outlined'
 import ThemeSwitch from '../ThemeSwitch'
@@ -14,38 +14,6 @@ interface FirstCard {
   image?: any
   icon?: any
 }
-export function AvatarImage({ image }: any) {
-  return (
-    <>
-      <NextImage
-        src={image}
-        className="object-cover object-center rounded-full h-[100%]"
-        alt="profile"
-        height={20}
-        width={40}
-      />
-    </>
-  )
-}
-
-export function Avatar({ letter = 'A', image }: any) {
-  // console.log(image)
-  let [isImage, setIsImage] = useState<boolean>(true)
-  useEffect(() => {
-    image === '' ? setIsImage(false) : setIsImage(true)
-  }, [])
-
-  return (
-    <div className="flex w-10 h-10 items-center text-center justify-center rounded-full  bg-gray-300/20">
-      {isImage ? (
-        <AvatarImage image={image} />
-      ) : (
-        <div className="font-mono font-medium ">{letter}</div>
-      )}
-    </div>
-  )
-}
-
 export default function FirstCard({
   title,
   image,
