@@ -39,8 +39,19 @@ export const updateProfile = async (userId: string, userFields: any): Promise<an
   }
 }
 
+export const register = async (name: string, email: string, password: string): Promise<any> => {
+  try {
+    const url = '/auth/register'
+    const { data } = await apiClient.post(url, { name, email, password })
+    console.log(data.data)
+    return data.data
+  } catch (error) {
+    throw new error()
+  }
+}
 const AuthService = {
   login,
+  register,
   getMe,
   updateProfile,
 }
