@@ -6,20 +6,25 @@ import React, { useState } from 'react'
 import { useUser } from 'hooks/user/useUser'
 import withAuth from '@/components/withAuth'
 import useUpdateUser from 'hooks/user/useUpdateUser'
-const Dashboard = () => {
+import UserCard from '@/components/Cards/User'
+import UserServices from '@/services/UserService'
+import useFetchUser from 'hooks/useFetchUsers'
+import ListLayout from '@/components/ListLayout'
+const Dashboard = ({ users }) => {
   // const { data: session } = useSession()
   const { data: currentUser } = useUser()
   const [userImage, setUserImage] = useState<string | ArrayBuffer | null>('')
   const [updating, setUpdating] = useState(false)
-  
-  const updateUser = useUpdateUser()
 
+  // const { data: users } = useFetchUser()
+
+  const updateUser = useUpdateUser()
 
   const handleUpdateProfile = async () => {
     if (!currentUser) {
       return
     }
-    
+
     try {
       setUpdating(true)
       // console.log(currentUser._id)
@@ -62,14 +67,24 @@ const Dashboard = () => {
 
   return (
     <>
-      <div>
+      <div className="flex flex-col justify-center items-center">
         <h2>Dashboard</h2>
-        <input type="file" onChange={handleChange} accept="image/x-png,image/jpeg" />
-        <button type="button" title="change photo" onClick={handleUpdateProfile}>
-          upload
-        </button>
         <br />
-        {currentUser ? User({ currentUser }) : Guest()}
+        {/* {currentUser ? User({ currentUser }) : Guest()} */}
+        {currentUser ? (
+          <UserCard
+            image={currentUser.image}
+            name={currentUser.name}
+            email={currentUser.email}
+            role={currentUser.role}
+            isVerified={currentUser.isVerified}
+          />
+        ) : (
+          Guest()
+        )}
+        <br />
+
+        <ListLayout initialDisplayUsers={users} users={users} />
       </div>
     </>
   )
@@ -83,13 +98,6 @@ function User({ currentUser }) {
       <br />
       {JSON.stringify(currentUser.email, null, 2)}
       <br />
-      {/* {JSON.stringify(currentUser.image, null, 2)} */}
-      <br />
-      {/* {JSON.stringify(currentUser.password, null, 2)} */}
-      <br />
-      {/* <div>{session.user.name}</div> */}
-      {/* <div>{JSON.stringify(session.user)}</div> */}
-      {/* <div>{session.user.email}</div> */}
     </>
   )
 }
@@ -101,12 +109,11 @@ function Guest() {
   )
 }
 
-export default withAuth(Dashboard)
+export default Dashboard
 
-
-function updateUser(_id: any, userImage: string | ArrayBuffer) {
-  throw new Error('Function not implemented.')
-}
+// function updateUser(_id: any, userImage: string | ArrayBuffer) {
+//   throw new Error('Function not implemented.')
+// }
 // export async function getServerSideProps({ req }) {
 //   const { data: currentUser } = useUser()
 //   if (!currentUser) {
@@ -121,3 +128,17 @@ function updateUser(_id: any, userImage: string | ArrayBuffer) {
 //     props: { currentUser },
 //   }
 // }
+
+// export async function getServerSideProps() {
+//   const users = await UserServices.getUsers()
+//   return {
+//     props: { users },
+//   }
+// }
+
+export async function getStaticProps() {
+  const users = await UserServices.getUsers()
+  return {
+    props: { users },
+  }
+}
