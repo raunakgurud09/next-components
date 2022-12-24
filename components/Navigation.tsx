@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Avatar } from './Cards/first'
 import Signature from './Signature'
 import SmallNav from './SmallNav'
 import ThemeSwitch from './ThemeSwitch'
@@ -7,11 +6,14 @@ import { useSession, signIn, signOut, getSession } from 'next-auth/react'
 import LogIn from './login-btn'
 import { useUser } from 'hooks/user/useUser'
 import { useEffect } from 'react'
+import { Avatar } from './Avatar'
 
 export interface navList {
   name: string
   href: string
 }
+
+
 
 export interface navList extends Array<navList> {}
 
@@ -40,7 +42,6 @@ const Navigation = () => {
   const { data: session } = useSession()
   const { data: currentUser } = useUser()
   useEffect(() => {
-
     return () => {}
   }, [currentUser])
 
@@ -64,13 +65,20 @@ const Navigation = () => {
 
       <div className="flex items-center space-x-6 text-300 md:space-x">
         <ThemeSwitch />
-        {currentUser ? <Avatar image={currentUser.image} /> : <Avatar />}
+        {!currentUser ? (
+          <LogIn />
+        ) : (
+          <Avatar letter={currentUser.name.charAt(0).toUpperCase()} image={currentUser.image} />
+        )}
+
         <SmallNav />
-        <LogIn />
       </div>
     </nav>
   )
 }
+// :()
+// }
+//   <Avatar  image={currentUser?.image} />
 
 export default Navigation
 
