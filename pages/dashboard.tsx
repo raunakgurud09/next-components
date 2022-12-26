@@ -6,10 +6,10 @@ import React, { useState } from 'react'
 import { useUser } from 'hooks/user/useUser'
 import withAuth from '@/components/withAuth'
 import useUpdateUser from 'hooks/user/useUpdateUser'
-import UserCard from '@/components/Cards/User'
+import UserCard from '@/components/ui/Cards/User'
 import UserServices from '@/services/UserService'
 import useFetchUser from 'hooks/useFetchUsers'
-import ListLayout from '@/components/ListLayout'
+import ListLayout from '@/components/Layouts/ListLayout'
 const Dashboard = ({ users }) => {
   // const { data: session } = useSession()
   const { data: currentUser } = useUser()
@@ -83,8 +83,9 @@ const Dashboard = ({ users }) => {
           Guest()
         )}
         <br />
-
-        <ListLayout initialDisplayUsers={users} users={users} />
+        <div className="flex flex-col">
+          <ListLayout initialDisplayUsers={users} users={users} />
+        </div>
       </div>
     </>
   )
@@ -109,6 +110,7 @@ function Guest() {
   )
 }
 
+// export default withAuth(Dashboard)
 export default Dashboard
 
 // function updateUser(_id: any, userImage: string | ArrayBuffer) {

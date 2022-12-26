@@ -1,12 +1,12 @@
 import { getSession } from 'next-auth/react'
 import NextImage from 'next/image'
 import Link from 'next/link'
-import { Avatar } from '../Avatar'
+import { Avatar } from '../Avatar/Avatar'
 import SmallBadge from '../Badges/Small'
 import FilledButton from '../Buttons/Filled'
 import OutlinedButton from '../Buttons/Outlined'
-import Modal from '../Modal'
-import ThemeSwitch from '../ThemeSwitch'
+import Modal from '../Modal/Modal'
+import ThemeSwitch from '../../ThemeSwitch'
 
 interface FirstCard {
   title: string
@@ -41,7 +41,7 @@ export default function FirstCard({
             <SmallBadge children={<ThemeSwitch />} number={2} />
           </div>
         </div>
-        <div className="cover">
+        <div className="contain">
           <NextImage
             src={image}
             className="object-cover object-center sm:h-20 md:h-36 lg:h-48"

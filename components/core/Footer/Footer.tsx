@@ -1,5 +1,5 @@
-import socials from '../data/socials'
-import Signature from './Signature'
+import socials from '../../../data/socials'
+import Signature from '../../Icons/Signature'
 
 const footer = [
   {

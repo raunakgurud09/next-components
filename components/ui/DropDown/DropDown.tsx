@@ -1,14 +1,17 @@
 import cx from 'classnames'
 import { useLogout } from 'hooks/useAuth'
 import { useUser } from 'hooks/user/useUser'
+import { useTheme } from 'next-themes'
 import { ReactComponentElement, useEffect, useRef, useState } from 'react'
-import { GitHubLogo, LinkedinLogo } from './Icons'
+import { GitHubLogo, LinkedinLogo } from '../../Icons'
+import ThemeSwitch from '../../ThemeSwitch'
 
 export default function DropDown({ children }) {
   const [isOpenDropDown, setIsOpenDropDown] = useState<boolean>(false)
   const { data: currentUser } = useUser()
   const logout = useLogout()
 
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const handleLogout = () => {
     logout()
     window.location.href = '/login'
@@ -53,7 +56,7 @@ export default function DropDown({ children }) {
           <h3 className="text-m">Hey! {currentUser.name}</h3>
           <DropDownList action={handleLogout} text="singOut" />
           <DropDownList action={handleDashboard} text="Dashboard" />
-          {/* <DropDownList /> */}
+          <DropDownList icon={<ThemeSwitch />} text="Theme" />
         </div>
       </div>
     </li>

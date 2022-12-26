@@ -1,15 +1,15 @@
 import Link from 'next/link'
-import Signature from './Signature'
+import Signature from '../../Icons/Signature'
 import SmallNav from './SmallNav'
-import ThemeSwitch from './ThemeSwitch'
+import ThemeSwitch from '../../ThemeSwitch'
 import { useSession, signIn, signOut, getSession } from 'next-auth/react'
-import LogIn from './login-btn'
+import LogIn from '../../ui/Buttons/login-btn'
 import { useUser } from 'hooks/user/useUser'
 import { useEffect } from 'react'
-import { Avatar } from './Avatar'
+import { Avatar } from '../../ui/Avatar/Avatar'
 import { GetServerSideProps } from 'next'
 import { fetcherSSR } from '@/lib/fetchSSR'
-import DropDown from './DropDown'
+import DropDown from '../../ui/DropDown/DropDown'
 
 export interface navList {
   name: string
@@ -22,14 +22,6 @@ export const navLists = [
   {
     name: 'Blog',
     href: '/blog',
-  },
-  {
-    name: 'Login',
-    href: '/login',
-  },
-  {
-    name: 'Projects',
-    href: '/projects',
   },
   {
     name: 'dashboard',
@@ -47,7 +39,7 @@ const Navigation = () => {
   }, [currentUser])
 
   return (
-    <nav className="flex px-6 py-4 item-center select-none backdrop-blur font-mono sticky top-0 z-50">
+    <nav className=" flex px-6 py-4 item-center select-none backdrop-blur font-mono sticky top-0 z-50">
       <Signature />
       <div className="flex-1"></div>
 
@@ -99,7 +91,7 @@ export default Navigation
 //   }
 // }
 
-const getServerSideProps: GetServerSideProps<T> = async (context) => {
+const getServerSideProps: GetServerSideProps = async (context) => {
   const fetcher = (url: string) => fetcherSSR(context.req, context.res, url)
 
   const url = 'http://localhost:5000/api/v1/user/profile'

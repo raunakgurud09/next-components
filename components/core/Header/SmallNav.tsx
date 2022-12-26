@@ -1,7 +1,7 @@
 import { Menu, Transition } from '@headlessui/react'
 import Link from 'next/link'
 import { FC, Fragment } from 'react'
-import { MenuIcon } from './Icons/MenuIcon'
+import { MenuIcon } from '../../Icons/MenuIcon'
 
 import { navLists } from './Navigation'
 

@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import UserCard from './Cards/User'
+import UserCard from '../ui/Cards/User'
+
 
 export default function ListLayout({ users, initialDisplayUsers }) {
   const [searchValue, setSearchValue] = useState('')
@@ -15,7 +16,7 @@ export default function ListLayout({ users, initialDisplayUsers }) {
 
   return (
     <>
-      <div className="relative max-w-lg">
+      <div className="relative w-[100%]">
         <input
           aria-label="Search articles"
           type="text"
@@ -38,7 +39,11 @@ export default function ListLayout({ users, initialDisplayUsers }) {
           />
         </svg>
       </div>
-      <div className="grid-col-2 w-3/4">
+      <br />
+      {/* <div className="m-4 w-[100%]"> */}
+      <div
+        className={`container grid justify-center items-center grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-2`}
+      >
         {displayUsers.map((user) => {
           return (
             <UserCard
@@ -52,6 +57,7 @@ export default function ListLayout({ users, initialDisplayUsers }) {
           )
         })}
       </div>
+      {/* </div> */}
     </>
   )
 }

@@ -19,14 +19,14 @@ export default function LogIn() {
     return (
       <>
         <Link href="/login">
-          <button>SignIn</button>
+          <button>Sign In</button>
         </Link>
       </>
     )
   }
   return (
     <>
-      <button onClick={handleLogout}>SignOut</button>
+      <button onClick={handleLogout}>Sign Out</button>
     </>
   )
 }
